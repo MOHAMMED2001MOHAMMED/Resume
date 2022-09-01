@@ -1,0 +1,143 @@
+<%- include('./part/heder'); %>
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Company/login">Login Company</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Company/Signup-user">Signup user</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/login-users">login user</a>
+                        </li>
+
+
+                </div>
+            </div>
+        </nav>
+
+        <!-- Start Edit  -->
+        <!-- Section: Design Block -->
+        <section class="text-center text-lg-start">
+            <style>
+                .cascading-right {
+                    margin-right: -50px;
+                }
+                
+                @media (max-width: 991.98px) {
+                    .cascading-right {
+                        margin-right: 0;
+                    }
+                }
+            </style>
+
+            <!-- Jumbotron -->
+            <div class="container py-4">
+                <div class="row g-0 align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="card cascading-right" style="
+                          background: hsla(0, 0%, 100%, 0.55);
+                          backdrop-filter: blur(30px);
+                          ">
+                            <div class="card-body p-5 shadow-5 text-center">
+                                <h2 class="fw-bold mb-5">USER <br>Sign up now</h2>
+                                <form action="/users/Signup" method="post" data-validate="parsley">
+
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example3">Email address</label>
+                                        <input name='email' type="email" id="form3Example3" class="form-control" data-error-message="Your E-mail is required" />
+                                    </div>
+
+                                    <!-- Confairm Email input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example3">Confairm Email address</label>
+                                        <input name='cemail' type="email" id="form3Example3" class="form-control" data-error-message="Your E-mail must correspond" />
+                                    </div>
+
+                                    <!-- Password input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example4">Password</label>
+                                        <input type="password" id="form3Example4" class="form-control" name='password' data-error-message="Your E-mail must correspond" />
+                                    </div>
+
+                                    <!-- Confairm Password -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example4">Confirm Password</label>
+                                        <input type="password" id="form3Example4" class="form-control" name='cpassword' data-error-message="Your E-mail must correspond" />
+                                    </div>
+
+                                    <!-- Age Input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example4">Age</label>
+                                        <input name="Age" type="number" id="form3Example4" class="form-control" data-error-message="Your E-mail must correspond" />
+                                    </div>
+
+                                    <!-- Submit button -->
+                                    <button type="submit" class="btn btn-primary btn-block mb-4">
+                              Sign up
+                            </button>
+                                </form>
+
+                                <div class="col">
+
+
+                                    <a href="/users/auth/google" class="google btn" style="background-color: orangered;margin-bottom: 5px;">
+                                        <i class="fa fa-google fa-fw"></i> Login with Google+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded-4 shadow-4" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- Jumbotron -->
+        </section>
+        <!-- Section: Design Block -->
+        <!-- End Edit -->
+
+
+
+
+        <% if(ErrSignup){ %>
+            <% for(let e of ErrSignup ){ %>
+                <div class="alert ">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Danger!</strong>
+                    <%= e %> .
+                </div>
+                <% } %>
+                    <% } %>
+                        <% if(ESignup){ %>
+                            <% for(let e of ESignup ){ %>
+                                <div class="alert alert-danger container">
+                                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                    <strong>Danger!</strong>
+                                    <%= e.msg %> .
+                                </div>
+                                <% } %>
+                                    <% } %>
+                                        </div>
+
+                                        </div>
+    </body>
+
+    </html>

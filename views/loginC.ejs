@@ -1,0 +1,120 @@
+<%- include('./part/heder'); %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Company/Signup">Signup Company </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/Signup-user">Signup user</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/login-users">login user</a>
+                        </li>
+
+                </div>
+            </div>
+        </nav>
+
+        <% if(e) {%>
+            <% for(let ee of e){ %>
+                <div class="alert alert-danger container">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Danger! <%= ee %> </strong>
+
+                </div>
+                <% } %>
+                    <% } %>
+
+                        </div>
+                        </div>
+                        <script>
+                            function placeholderIsSupported() {
+                                test = document.createElement('input');
+                                return ('placeholder' in test);
+                            }
+
+                            $(document).ready(function() {
+                                placeholderSupport = placeholderIsSupported() ? 'placeholder' : 'no-placeholder';
+                                $('html').addClass(placeholderSupport);
+                            });
+                        </script>
+
+                        <!-- Section: Design Block -->
+                        <section class="text-center">
+                            <!-- Background image -->
+                            <div class="p-5 bg-image" style="
+          background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+          height: 300px;
+          "></div>
+                            <!-- Background image -->
+
+                            <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+          margin-top: -100px;
+          background: hsla(0, 0%, 100%, 0.8);
+          backdrop-filter: blur(30px);
+          ">
+                                <div class="card-body py-5 px-md-5">
+
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-lg-8">
+                                            <h2 class="fw-bold mb-5"> COMPANY <br> Sign up now</h2>
+                                            <form action="/Company/login" method="post" data-validate="parsley">
+                                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                                <div class="row">
+
+                                                </div>
+
+                                                <!-- Email input -->
+                                                <div class="form-outline mb-4">
+                                                    <label class="form-label" for="form3Example3">Email address</label>
+                                                    <input type="email" id="form3Example3" class="form-control" name='Email' data-type="email" data-error-message="Your E-mail is required" />
+                                                </div>
+
+                                                <!-- Password input -->
+                                                <div class="form-outline mb-4">
+                                                    <label class="form-label" for="form3Example4">Password</label>
+                                                    <input type="password" id="form3Example4" class="form-control" name='Password' data-error-message="Your E-mail must correspond" />
+                                                </div>
+                                                <!-- Submit button -->
+                                                <button type="submit" class="btn btn-primary btn-block mb-4">
+                Sign up
+              </button>
+
+
+                                            </form>
+
+                                            <div class="col">
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- Section: Design Block -->
+
+
+
+    </body>
+
+    </html>

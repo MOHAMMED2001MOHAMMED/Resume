@@ -1,0 +1,112 @@
+<%- include('./part/heder'); %>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <% if(isAdmin){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Orders/OrdersAdmin/All">Order All</a>
+                        </li>
+                        <% } %>
+                            <% if(isUser == undefined && isCompany == undefined ){ %>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Company/login">Login Company</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Company/login">Signup Company</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/users/Signup-user">Signup user</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/users/login-users">login user</a>
+                                </li>
+                                <% } %>
+
+                                    <% if(isUser){ %>
+                                        <form action="/users/logout" method="get" style="margin-right: 80px;">
+                                            <input type="submit" class="btn btn-danger" value="Logout....">
+                                        </form>
+                                        <% } %>
+                                            <% if(isCompany){ %>
+                                                <form action="/Company/logout" method="get" style="margin-right: 80px;">
+                                                    <input type="submit" class="btn btn-danger" value="Logout....">
+                                                </form>
+                                                <% } %>
+
+
+            </div>
+
+        </nav>
+
+
+        <form action="/Controller" method="post" class="container mt-3">
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example1">E-Department</label>
+                <input type="text" id="form2Example1" class="form-control" placeholder="E-Department" name="Department" />
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example2">E-Category</label>
+                <input type="text" id="form2Example2" class="form-control" placeholder="E-Category" name="Category" />
+            </div>
+
+            <input type="submit" value="Create Category" class="btn btn-primary btn-lg">
+
+        </form>
+
+
+
+        <% for (let i = 1; i<getcategorys.length ;i++ ) { %>
+            <table class="table container mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <%= i%>
+                        </th>
+                        <td>
+                            <%= getcategorys[i].category %>
+                        </td>
+                        <td>
+                            <%= getcategorys[i].department %>
+                        </td>
+                        <td>
+                            <form action="/Controller/Delete" method="post">
+                                <input type="hidden" value="<%=getcategorys[i]._id%>" name="id">
+                                <input type="submit" value="Delete Category" class="btn btn-danger ">
+                            </form>
+                        </td>
+                    </tr>
+            </table>
+            <% } %>
+
+                <% if(success.length >= 1) {%>
+                    <div class="alert alert-success alert-dismissible fade show container mt-3" role="alert">
+                        <strong>Hello Admin</strong>
+                        <%=success%>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                    </div>
+                    <% } %>
+
+    </body>
+
+    </html>

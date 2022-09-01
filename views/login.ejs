@@ -1,0 +1,160 @@
+<%- include('./part/heder'); %>
+    <style>
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+        
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+        
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+        
+        .fb {
+            background-color: #3B5998;
+            color: white;
+        }
+        
+        .twitter {
+            background-color: #55ACEE;
+            color: white;
+        }
+        
+        .google {
+            background-color: #dd4b39;
+            color: white;
+        }
+    </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/Signup-user">Signup User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Company/Signup">Signup Company </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Company/login">login Company</a>
+                        </li>
+
+
+
+                </div>
+            </div>
+        </nav>
+
+        <!-- Start Edit -->
+        <section class="vh-100">
+            <div class="container-fluid h-custom">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-md-9 col-lg-6 col-xl-5">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
+                    </div>
+                    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                        <form action="/users/login" method="post" data-validate="parsley">
+                            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                                <p class="lead fw-normal mb-0 me-3 text-center">User LogIn </p>
+                            </div>
+
+                            <div class="divider d-flex align-items-center my-4">
+                            </div>
+
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form3Example3">Email address</label>
+
+                                <input name='Email' type="email" id="form3Example3" class="form-control form-control-lg" placeholder="Enter a valid email address" data-error-message="Your E-mail is required" />
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-3">
+                                <label class="form-label" for="form3Example4">Password</label>
+
+                                <input name='Password' type="password" id="form3Example4" class="form-control form-control-lg" placeholder="Enter password" data-error-message="Your E-mail must correspond" />
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- Checkbox -->
+
+                            </div>
+
+                            <div class="text-center text-lg-start mt-4 pt-2">
+                                <input type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Login" />
+                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/users/Signup" class="link-danger">Register</a></p>
+                            </div>
+
+
+                        </form>
+
+                        <div class="col">
+
+
+                            <a href="/users/auth/google" class="google btn" style="background-color: orangered;margin-bottom: 5px;margin-left: 140px;">
+                                <i class="fa fa-google fa-fw"></i> Login with Google+
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <% if(Err){ %>
+                <% for(let e of Err ){ %>
+                    <div class="alert alert-danger container ">
+                        <span class="closebtn " onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Danger!</strong>
+                        <%= e %> .
+                    </div>
+                    <% } %>
+                        <% } %>
+                            <% if(Er){ %>
+                                <% for(let e of Er){ %>
+                                    <div class="alert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                        <strong>Danger!</strong>
+                                        <%= e.msg %> .
+                                    </div>
+                                    <% } %>
+                                        <% } %>
+                                            </div>
+                                            </div>
+
+        </section>
+        <!-- End Edit -->
+
+
+
+        <script>
+            function placeholderIsSupported() {
+                test = document.createElement('input');
+                return ('placeholder' in test);
+            }
+
+            $(document).ready(function() {
+                placeholderSupport = placeholderIsSupported() ? 'placeholder' : 'no-placeholder';
+                $('html').addClass(placeholderSupport);
+            });
+        </script>
+    </body>
+
+    </html>

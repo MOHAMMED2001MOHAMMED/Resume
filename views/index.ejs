@@ -1,0 +1,213 @@
+<%- include('./part/heder'); %>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Home</a>
+                <% if(isUser && !isAdmin){ %>
+
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/profile-user">Profile</a>
+                        </li>
+                    </ul>
+                    <% } %>
+                        <% if(isCompany){ %>
+
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Orders">Orders</a>
+                                </li>
+                            </ul>
+                            <% } %>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav mr-auto">
+
+                                        <% if(isAdmin){ %>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/controller">Controller</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/Orders/OrdersAdmin/All">Order All</a>
+                                            </li>
+                                            <% } %>
+                                                <% if(isUser == undefined && isCompany == undefined ){ %>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="/Company/login">Login Company</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="/Company/login">Signup Company</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="/users/Signup-user">Signup user</a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="/users/login-users">login user</a>
+                                                    </li>
+
+
+
+                                                    <% } %>
+                                                        <form class="form-inline my-2 my-lg-0" action="/search" method="get" style="margin-right: 5px;">
+                                                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                                                            <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">
+                                                        </form>
+
+                                </div>
+
+                                <!-- Search Input & Icon -->
+
+
+                                <% if(isCompany){ %>
+
+
+
+                                    <form action="/Company/logout" method="get">
+                                        <input type="submit" class="btn btn-danger" value="Logout">
+                                    </form>
+                                    <% } %>
+
+
+                                        <% if(isUser){ %>
+
+                                            <form action="/users/logout" method="get">
+                                                <input type="submit" class="btn btn-danger" value="Logout">
+                                            </form>
+
+                                            <% } %>
+
+            </div>
+
+
+
+        </nav>
+
+
+        <div class="container mt-3">
+            <form action="/" method="get" class="row">
+
+                <select name="category" class="form-select col col-8" aria-label="Default select example" aria-label="Default select example">
+                <option value="all">All</option>
+            <% for(let i of department){ %> 
+                <optgroup label="<%= i %>">
+                <% for(let e of getcate) {%>
+                    <%  if(e.department == i){%>
+                    <option value="<%= e.category %> "><%= e.category%></option>
+                    <% } %> 
+                    <% } %>  
+                </optgroup>
+                
+                <% } %> 
+        </select>
+
+                <input type="submit" class="btn btn-primary btn-sm col col-2 ml-1" style="height: 35px;" value="Filtering">
+
+            </form>
+        </div>
+        <br>
+
+        <% if(getusers.length <=0){ %>
+            <div class="alert alert-danger container">
+                <strong>Danger!</strong>There are no items .
+            </div>
+            <% } %>
+
+
+
+
+
+
+                <!-- Start Edit -->
+
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <% for(let i  = 0; i<getusers.length ; i++){ %>
+                            <% if(getusers[i].isDataCV == true) {%>
+                                <div class="col mt-2 shadow-lg p-3 mb-5 bg-white rounded text-monospace">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3 class="card-title text-center " style="color: #17a2b8; text-shadow: 0px 1px 8px #17a2b8">
+                                                <%= getusers[i].Department%>
+                                            </h3>
+                                            <h6 class="card-title">
+                                                Specialization :
+                                                <%= getusers[i].Specialization%>
+                                            </h6>
+
+                                            <h6 class="card-title">
+                                                Degree :
+                                                <%= getusers[i].degree%>
+                                            </h6>
+
+                                            <h6 class="card-title">
+                                                Gender :
+                                                <%= getusers[i].Gender%>
+                                            </h6>
+
+                                            <h6 class="card-title">
+                                                Skills :
+                                                <%= getusers[i].Skills%>
+                                            </h6>
+
+                                            <h6 class="card-title">
+                                                languges :
+                                                <%= getusers[i].languges%>
+                                            </h6>
+
+                                            <h6 class="card-title">
+                                                languges :
+                                                <%= getusers[i].languges%>
+                                            </h6>
+
+                                            <h6 class="card-title">
+                                                Experience :
+                                                <%  for(let e of getusers[i].Experience) {%>
+
+                                                    <%= e %>
+
+                                                        <% } %>
+                                            </h6>
+
+                                            <a href="/employment/<%=getusers[i]._id%>%> " class="btn btn-info">More Info</a>
+
+                                            <% if(!isUser){ %>
+                                                <form action="/Orders" method="post">
+                                                    <input type="hidden" name="id" value="<%= getusers[i]._id %> ">
+                                                    <input type="hidden" name="FirstName" value="<%= getusers[i].FirstName %> ">
+                                                    <input type="hidden" name="Department" value="<%= getusers[i].Department %> ">
+                                                    <input type="hidden" name="Category" value="<%= getusers[i].Category %> ">
+                                                    <input type="submit" class="btn btn-success" style="margin-left: 170px; margin-top: -63px;" value="Order">
+                                                </form>
+                                                <% } else{%>
+                                                    <p style=" margin-left: 100px; margin-top: 20px;" class="btn btn-danger">Demand for companies only
+                                                    </p>
+                                                    <% } %>
+
+                                                        <% if(ErrOrder.length>=1){ %>
+
+
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <%= ErrOrder %>
+                                                            </div>
+
+                                                            <% } %>
+
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <% } %>
+                        <% } %>
+                </div>
+
+
+    </body>
+
+    </html>

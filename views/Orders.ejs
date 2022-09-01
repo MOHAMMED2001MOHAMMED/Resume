@@ -1,0 +1,106 @@
+<%- include('./part/heder'); %>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+
+
+                        <% if(isAdmin){ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/controller">Controller</a>
+                            </li>
+                            <% } %>
+                                <% if(isUser == undefined && isCompany == undefined ){ %>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Company/login">Login Company</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Company/login">Signup Company</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/users/Signup-user">Signup user</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/users/login-users">login user</a>
+                                    </li>
+                                    <% } %>
+                </div>
+                <form class="form-inline my-2 my-lg-0" action="/search" method="get" style="margin-right:5px;">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">
+                </form>
+
+                <% if(isUser){ %>
+                    <form action="/users/logout" method="get">
+                        <input type="submit" class="btn btn-danger" value="Logout....">
+                    </form>
+                    <% } %>
+                        <% if(isCompany){ %>
+                            <form action="/Company/logout" method="get">
+                                <input type="submit" class="btn btn-danger" value="Logout....">
+                            </form>
+                            <% } %>
+
+            </div>
+        </nav>
+
+
+        <% if(order.length <=0){ %>
+
+            <div class="alert alert-warning container mt-3" role="alert">
+                Ther Is No Orders !
+            </div>
+
+            <% }else{ %>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% let i = 0 %>
+                            <% for(let o of order){ %>
+
+                                <tr>
+                                    <th scope="row">
+                                        <%= i= i+1 %>
+                                    </th>
+                                    <td>
+                                        <%=o.FirstName %>
+
+                                    </td>
+                                    <td>
+                                        <%= o.Department %>
+                                    </td>
+                                    <td>@
+                                        <%= o.Category %>
+                                    </td>
+                                    <td>
+                                        <form action="/Orders/OrderDelete" method="post">
+                                            <input type="hidden" name="OrderDelete" value="<%=o._id %> ">
+                                            <input type="submit" class="btn btn-danger" value="Delete">
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+
+                    </tbody>
+                </table>
+                <% } %>

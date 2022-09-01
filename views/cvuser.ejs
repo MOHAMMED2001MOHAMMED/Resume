@@ -1,0 +1,297 @@
+<%- include('./part/heder'); %>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <div class="container">
+                <a class="navbar-brand" href="/">Home</a>
+                <a class="navbar-brand" href="/users/profile-user">profile</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                </div>
+                <form action="/users/logout" method="get">
+                    <input type="submit" class="btn btn-danger" value="Logout">
+                </form>
+            </div>
+        </nav>
+        <% if(ErrCvuser) {%>
+            <% for(let ee of ErrCvuser){ %>
+                <div class="alert alert-danger container">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Danger! <%= ee.msg %> </strong>
+
+                </div>
+                <% } %>
+                    <% } %>
+
+                        <div class="container">
+                            <ul class="nav justify-content-center p-3 bg-info mt-3 mb-3" style="color: #fff;">
+                                <h4>Job Application Form</h4>
+                            </ul>
+
+                            <form action="/users/cvuser" method="post" enctype="multipart/form-data">
+                                <label class="form-label" for="customFile">Upload Image</label>
+                                <input type="file" class="form-control" id="customFile" name="image" />
+
+                                <br>
+
+
+                                <select class="custom-select" id="inputGroupSelect01" name="Campus">
+   
+    <option value="Al-Aqsa" selected>Al-Aqsa</option>
+    <option  value="Islamic">Islamic</option>
+    <option  value="Palestine">Palestine</option>
+    <option  value="Jerusalem">Jerusalem</option>
+    <option  value="Al-Azhar">Al-Azhar</option>
+
+  </select>
+
+
+                                <br>
+                                <br>
+
+                                <select class="custom-select" id="inputGroupSelect01" name="degree">
+   
+    
+    <option  value="Bachelor" selected>Bachelor</option>
+    <option  value="diploma">diploma</option>
+    <option  value="Master's">Master's</option>
+    <option  value="Postgraduate">Postgraduate</option>
+
+  </select>
+
+
+
+                                <br>
+
+
+
+
+
+                                <br>
+                                <select class="custom-select" id="inputGroupSelect01" name="Category">
+                        <% for(let i of department){ %>
+
+                            <% for(let e of getcate) {%>
+                                <%  if(e.department == i){%>
+                                    <option  value="<%= e.category %>"><%= e.category %></option>
+                                    <% } %>
+                                        <% } %>
+
+                                            <% } %>
+                  
+                </select>
+                                <br>
+
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="SpecialtyPublic" placeholder="Specialty name">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="Department" placeholder="Department">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="Specialization" placeholder="Specialization">
+                                    </div>
+                                </div>
+
+                                <ul class="nav justify-content-center p-3 bg-success mt-3 mb-3" style="color: #fff;">
+                                    <h4>Personal Information</h4>
+                                </ul>
+
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="FirstName" placeholder="First Name">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="LastNmae" placeholder="Last Nmae">
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-select" aria-label="Default select example" name="Gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                                    </div>
+                                </div>
+                                <h4 class="p-1">Martial Status</h4>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="MartialStatus" id="flexRadioDefault1" value="Single">
+                                    <label class="form-check-label" for="flexRadioDefault1">Single</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="MartialStatus" id="flexRadioDefault1" value="Married">
+                                    <label class="form-check-label" for="flexRadioDefault1">Married</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="MartialStatus" id="flexRadioDefault1" value="Divorced">
+                                    <label class="form-check-label" for="flexRadioDefault1">Divorced</label>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="Nationality" placeholder="Nationality">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="Domicile" placeholder="Domicile">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="Address" placeholder="Address">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="City" placeholder="City">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="Mobile" placeholder="Mobile Number">
+                                    </div>
+                                </div>
+
+                                <ul class="nav justify-content-center p-3 bg-warning mt-3 mb-3" style="color: #fff;">
+                                    <h4>Previous experience</h4>
+                                </ul>
+                                <tr>
+                                    <th scope="col">Specialty Name</th>
+                                    <th scope="col">Place</th>
+                                    <th scope="col">Starting Date</th>
+                                    <th scope="col">Ending Date</th>
+                                    <th scope="col">Notes</th>
+                                </tr>
+                                <table class="table">
+                                    <thead>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input class=".input-lg" type="text" name="Specialty" placeholder="S-N"></td>
+                                            <td><input type="text" name="Experience" placeholder="Place"></td>
+                                            <td><input type="Date" name="Experience" placeholder="S_D"></td>
+                                            <td><input type="Date" name="Experience" placeholder="E_D"></td>
+                                            <td><input type="text" name="Experience" placeholder="More Notes on the field"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <ul class="nav justify-content-center p-3 bg-success mt-3 mb-3" style="color: #fff;">
+                                    <h4>Skills</h4>
+                                </ul>
+
+                                <table class="table" id="skiilTable" cellspacing="2" cellpadding="4">
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name="Skills" placeholder="Skills"></td>
+                                            <td><input type="text" name="Skills" placeholder="Skills"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="Skills" placeholder="Skills"></td>
+                                            <td><input type="text" name="Skills" placeholder="Skills"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button onclick="AddSkill()" type="button" class="btn btn-secondary btn-lg btn-block">Add Skills</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <ul class="nav justify-content-center p-3  bg-danger mt-3 mb-3" style="color: #fff;">
+                                    <h4>languages</h4>
+                                </ul>
+                                <table class="table" id="languageTable">
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name="languages" placeholder="Language"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button onclick="AddLanguages()" type="button" class="btn btn-secondary btn-lg btn-block">Add Languages</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <!-- Start JavaScript -->
+
+                                <script>
+                                    function AddSkill() {
+                                        const table = document.getElementById('skiilTable');
+                                        var row = table.insertRow(0);
+                                        var cell1 = row.insertCell(0);
+                                        var cell2 = row.insertCell(1);
+                                        cell1.innerHTML = `<input type="text" name="Skills" required="text" placeholder="Skills">`;
+                                        cell2.innerHTML = `<input type="text" name="Skills" required="text" placeholder="Skills">`;
+                                    }
+
+                                    function AddLanguages() {
+                                        const table = document.getElementById('languageTable');
+                                        var row = table.insertRow(0);
+                                        var cell1 = row.insertCell(0);
+                                        cell1.innerHTML = `<input type="text" name="languages" placeholder="languages">`;
+                                    }
+                                </script>
+
+
+
+                                <ul class="nav justify-content-center p-3 bg-info mt-3 mb-3" style="color: #fff;">
+                                    <h4>communication Web-sites</h4>
+                                </ul>
+
+                                <label class="form-label" for="form3Example3">Githup</label>
+                                <input name='Githup' type="url" id="form3Example3" class="form-control form-control-lg" />
+
+                                <label class="form-label" for="form3Example3">Upwork</label>
+                                <input name='Upwork' type="url" id="form3Example3" class="form-control form-control-lg" />
+
+                                <label class="form-label" for="form3Example3">linkedin</label>
+                                <input name='linkedin' type="url" id="form3Example3" class="form-control form-control-lg" />
+
+                                <label class="form-label" for="form3Example3">Freelancer</label>
+                                <input name='Freelancer' type="url" id="form3Example3" class="form-control form-control-lg" />
+
+                                <label class="form-label" for="form3Example3">Facebook</label>
+                                <input name='Facebook' type="url" id="form3Example3" class="form-control form-control-lg" />
+
+                                <ul class="nav justify-content-center p-3 bg-info mt-3 mb-3" style="color: #fff;">
+                                    <h4>How long do you have to work?</h4>
+                                </ul>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="employeetime">employee time</textarea>
+                                </div>
+
+                                <ul class="nav justify-content-center p-3 bg-secondary mt-3 mb-3" style="color: #fff;">
+                                    <h4>CERTIFICATES</h4>
+                                </ul>
+
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Certificate or domain name" name="CertificateName">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="More information about the certificate" name="CommentCertificate">
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 mt-2">
+                                    <input type="hidden" name="id" value="<%= isUser %> ">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+
+    </body>
+
+    </html>
